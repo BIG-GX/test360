@@ -59,11 +59,6 @@ offline_check() {
 }
 
 for ip in $(echo "$ips"|tr ',' ' '); do
-    if [ "$is_test" -eq 1 ]; then
-        tmp_str="ENV: test"
-    else
-        tmp_str="ENV: production"
-    fi
     log_info "ip:$ip, id:$id, ops_type: $ops_type, $tmp_str"
     offline_check "$ip" &
 done
