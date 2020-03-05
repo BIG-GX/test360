@@ -187,10 +187,10 @@ if __name__ == "__main__":
        msg_udp = "iptables DROP 自建机房ip:" + dropownudp_str + "UDP包" + str(dropudp_ownipcount) + "个，请检查iptables是否正常！"
        msg_all_i = "I角色机器 iptables 一分钟DROP包超过阈值，TCP包UDP包共计:" + str(droptcp_allipcount + dropudp_allipcount) + "个，请检查!"
        msg_all_o = "O角色机器 iptables 一分钟DROP包超过阀值，TCP包UDP包共计:" + str(droptcp_allipcount + dropudp_allipcount) + "个，请检查! "
-       cmd1 = '/data/services/op_agent_d/tools/send_value \"fid=3884&value=' + str(droptcp_ownipcount) + '&info=' + msg_tcp + '\"'
-       cmd2 = '/data/services/op_agent_d/tools/send_value \"fid=3885&value=' + str(dropudp_ownipcount) + '&info=' + msg_udp + '\"'
-       cmd3 = '/data/services/op_agent_d/tools/send_value \"fid=3954&value=' + str(droptcp_allipcount + dropudp_allipcount) + '&info=' + msg_all_i + '\"'
-       cmd4 = '/data/services/op_agent_d/tools/send_value \"fid=3883&value=' + str(droptcp_allipcount + dropudp_allipcount) + '&info=' + msg_all_o + '\"'
+       cmd1 = '/data/agent/xxxx/send_value \"fid=xxx&value=' + str(droptcp_ownipcount) + '&info=' + msg_tcp + '\"'
+       cmd2 = '/data/agent/xxxx/send_value \"fid=xxx&value=' + str(dropudp_ownipcount) + '&info=' + msg_udp + '\"'
+       cmd3 = '/data/agent/xxxx/send_value \"fid=xxx&value=' + str(droptcp_allipcount + dropudp_allipcount) + '&info=' + msg_all_i + '\"'
+       cmd4 = '/data/agent/xxxx/send_value \"fid=xxx&value=' + str(droptcp_allipcount + dropudp_allipcount) + '&info=' + msg_all_o + '\"'
        command(cmd1)
        #print cmd1
        command(cmd2)
@@ -208,9 +208,9 @@ if __name__ == "__main__":
        ###以下是机器角色匹配的监控，如果机器角色跟iptables不匹配就发送alarm
        msg_i = "iptables规则与机器角色不匹配，I角色机器对外开放，请检查LIMIT_ACCESS链是否存在，若存在，请检查这条链是否有drop条目！"
        msg_o = "iptables规则与机器角色不匹配，O角色机器没有对外开放，请检查!"
-       cmd5 = '/data/services/op_agent_d/tools/send_alarm '
-       cmd6 = '/data/services/op_agent_d/tools/send_alarm '
-       cmd7 = '/data/services/op_agent_d/tools/send_alarm '
+       cmd5 = '/data/agent/xxxx/send_alarm '
+       cmd6 = '/data/agent/xxxx/send_alarm '
+       cmd7 = '/data/agent/xxxx/send_alarm '
        if machine_role != iptables_role:
           if machine_role == 'I':
              command(cmd5)
@@ -223,7 +223,7 @@ if __name__ == "__main__":
              #print cmd7
        cmd8 = 'grep -wq \"^.*关键字.*DROP.*$\" /etc/iptables-rule'
        msg_n = "告警信息!"
-       cmd9 = '/data/services/op_agent_d/tools/send_alarm ' + msg_n + '\"'
+       cmd9 = '/data/agent/xxxx/send_alarm ' + msg_n + '\"'
        status = commands.getstatusoutput(cmd8)
        if status[0] != 0:
           command(cmd9)
