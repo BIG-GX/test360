@@ -33,7 +33,7 @@ def command(cmd, timeout=60):
 #获取自建机房ip列表
 def GetOwnIplist():
     owniplist = []
-    with open('/usr/local/ops/route/net_list.txt') as f:
+    with open('/usr/xxxxxxx/net_list.txt') as f:
         for i in f:
             tmp = i.split(",")
             startnum = int(tmp[1])
